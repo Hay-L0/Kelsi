@@ -119,10 +119,14 @@ export default function DaysCounter() {
     return () => clearInterval(timer);
   }, []);
 
-  // Compute years of friendship and her exact age milestone
-  const now = new Date();
-  const ageYears = now.getFullYear() - BIRTH_DATE.getFullYear(); // Born Nov 4, 2009 -> 17 in 2026
+    // Compute her exact age milestone on the client
+  const [ageYears, setAgeYears] = useState(0);
 
+  useEffect(() => {
+    const now = new Date();
+    setAgeYears(now.getFullYear() - BIRTH_DATE.getFullYear());
+  }, []);
+  
   return (
     <section
       style={{
